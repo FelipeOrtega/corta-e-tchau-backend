@@ -1,11 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using System;
 
 namespace corta_e_tchau_backend
 {
@@ -20,8 +15,16 @@ namespace corta_e_tchau_backend
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    var port = Environment.GetEnvironmentVariable("PORT");
-                    webBuilder.UseStartup<Startup>().UseUrls("http://*:" + port); ;
+                    var debug = Environment.GetEnvironmentVariable("debug");
+                    if(debug.Equals("true"))
+                    {
+                        webBuilder.UseStartup<Startup>();
+                    }
+                    else
+                    {
+                        var port = Environment.GetEnvironmentVariable("PORT");
+                        webBuilder.UseStartup<Startup>().UseUrls("http://*:" + port); ;
+                    }
                 });
     }
 }

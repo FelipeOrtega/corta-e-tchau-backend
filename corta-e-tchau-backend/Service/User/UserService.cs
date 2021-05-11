@@ -1,9 +1,10 @@
 ﻿using corta_e_tchau_backend.Domain.Notification;
 using corta_e_tchau_backend.Model;
+using corta_e_tchau_backend.Repository;
 using System;
 using System.Collections.Generic;
 
-namespace corta_e_tchau_backend.Repository
+namespace corta_e_tchau_backend.Service
 {
     public class UserService : IUserService
     {
@@ -22,6 +23,21 @@ namespace corta_e_tchau_backend.Repository
             {
                 List<User> users = _repository.Get();
                 return users;
+            }
+            catch (Exception)
+            {
+                _notificationContext.AddNotification("Não foi possivel capturar as informações.");
+            }
+
+            return null;
+        }
+
+        public User Get(User user)
+        {
+            try
+            {
+                User User = _repository.Get(user.phone, user.password);
+                return User;
             }
             catch (Exception)
             {

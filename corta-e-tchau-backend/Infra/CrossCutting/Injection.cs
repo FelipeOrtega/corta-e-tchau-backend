@@ -1,5 +1,6 @@
 ﻿using corta_e_tchau_backend.Domain.Notification;
 using corta_e_tchau_backend.Repository;
+using corta_e_tchau_backend.Service;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace corta_e_tchau_backend.Infra

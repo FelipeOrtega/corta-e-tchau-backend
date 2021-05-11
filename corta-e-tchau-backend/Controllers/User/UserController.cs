@@ -1,12 +1,12 @@
 ﻿using System.Net;
 using corta_e_tchau_backend.Domain.Notification;
 using corta_e_tchau_backend.Model;
-using corta_e_tchau_backend.Repository;
+using corta_e_tchau_backend.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace corta_e_tchau_backend.Controllers
 {
-    [ApiController]
     [Route("[controller]")]
     public class UserController : ApiBase
     {
@@ -19,18 +19,21 @@ namespace corta_e_tchau_backend.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public JsonReturn Get()
         {
             return ReturnJson(_service.Get());
         }
 
         [HttpGet("{id}")]
+        [Authorize]
         public JsonReturn Get(int id)
         {
             return ReturnJson(_service.Get(id));
         }
 
         [HttpPost]
+        [Authorize]
         public JsonReturn Post([FromBody] User modulo)
         {
             if (modulo == null)
@@ -40,6 +43,7 @@ namespace corta_e_tchau_backend.Controllers
         }
 
         [HttpPut]
+        [Authorize]
         public JsonReturn Put([FromBody] User modulo)
         {
             if (modulo == null)
@@ -50,6 +54,7 @@ namespace corta_e_tchau_backend.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize]
         public JsonReturn Delete(int id)
         {
             return ReturnJson(_service.Delete(id));

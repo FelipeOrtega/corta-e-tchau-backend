@@ -1,9 +1,10 @@
 ﻿using corta_e_tchau_backend.Domain.Notification;
 using corta_e_tchau_backend.Model;
+using corta_e_tchau_backend.Repository;
 using System;
 using System.Collections.Generic;
 
-namespace corta_e_tchau_backend.Repository
+namespace corta_e_tchau_backend.Service
 {
     public class SchedulingService : ISchedulingService
     {

@@ -15,16 +15,11 @@ namespace corta_e_tchau_backend
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    var debug = Environment.GetEnvironmentVariable("debug");
-                    if(debug.Equals("true"))
-                    {
-                        webBuilder.UseStartup<Startup>();
-                    }
-                    else
-                    {
-                        var port = Environment.GetEnvironmentVariable("PORT");
-                        webBuilder.UseStartup<Startup>().UseUrls("http://*:" + port); ;
-                    }
+                    //DEBUG
+                    //webBuilder.UseStartup<Startup>();
+                    //PROD
+                    var port = Environment.GetEnvironmentVariable("PORT");
+                    webBuilder.UseStartup<Startup>().UseUrls("http://*:" + port);
                 });
     }
 }

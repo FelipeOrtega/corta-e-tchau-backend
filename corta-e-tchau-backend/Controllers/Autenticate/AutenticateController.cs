@@ -21,7 +21,6 @@ namespace corta_e_tchau_backend.Controllers
 
         [HttpGet]
         [Authorize]
-        [EnableCors("AllowAll")]
         public JsonReturn Get()
         {
             return ReturnJson(_service.Get());
@@ -47,7 +46,6 @@ namespace corta_e_tchau_backend.Controllers
 
         [HttpPut]
         [Authorize]
-        [EnableCors("AllowAll")]
         public JsonReturn Put([FromBody] User user)
         {
             if (user == null)
@@ -58,7 +56,6 @@ namespace corta_e_tchau_backend.Controllers
 
         [HttpDelete("{id}")]
         [Authorize]
-        [EnableCors("AllowAll")]
         public JsonReturn Delete(int id)
         {
             return ReturnJson(_service.Delete(id));

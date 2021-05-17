@@ -21,8 +21,14 @@ namespace corta_e_tchau_backend.Service
         {
             try
             {
-                List<Scheduling> schedulings = _repository.Get();
-                return schedulings;
+                List<Scheduling> schedulings = _repository.FullList();
+                List<Scheduling> schedulingsDTO = new List<Scheduling>();
+                foreach (var scheduling in schedulings)
+                {
+                    scheduling.user.password = scheduling.user.password = "";
+                    schedulingsDTO.Add(scheduling);
+                }
+                return schedulingsDTO;
             }
             catch (Exception)
             {

@@ -20,14 +20,12 @@ namespace corta_e_tchau_backend.Controllers
         }
 
         [HttpGet]
-        [Authorize]
         public JsonReturn Get()
         {
             return ReturnJson(_service.Get());
         }
 
         [HttpGet("{id}")]
-        [Authorize]
         public JsonReturn Get(int id)
         {
             return ReturnJson(_service.Get(id));

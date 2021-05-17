@@ -25,13 +25,27 @@ namespace corta_e_tchau_backend
 
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    builder =>
+                    {
+                        builder.AllowAnyOrigin()
+                               .AllowAnyHeader()
+                               .AllowAnyMethod();
+                    });
+            });
+
+            services.AddControllers().AddNewtonsoftJson(options =>
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            );
+
             services.AddControllers();
 
             services.AddDbContext<ApplicationDBContext>(options => options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
 
             Injection.Configure(services);
-
-            services.AddCors();
 
             services.Configure<ForwardedHeadersOptions>(options =>
             {
@@ -77,7 +91,7 @@ namespace corta_e_tchau_backend
 
             app.UseRouting();
 
-            app.UseCors("AllowAll");
+            app.UseCors();
 
             app.UseAuthorization();
 

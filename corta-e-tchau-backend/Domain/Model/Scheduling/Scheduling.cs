@@ -9,5 +9,6 @@ namespace corta_e_tchau_backend.Model
         public String description { get; set; }
         public int user_id { get; set; }
         public String status { get; set; }
+        public User user { get; set; }
     }
 }

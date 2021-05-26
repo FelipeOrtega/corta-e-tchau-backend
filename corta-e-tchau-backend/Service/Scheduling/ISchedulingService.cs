@@ -5,7 +5,7 @@ namespace corta_e_tchau_backend.Service
 {
     public interface ISchedulingService
     {
-        List<Scheduling> Get();
+        List<SchedulingGetDTO> Get();
         Scheduling Get(int codigo);
         int Insert(Scheduling aluno);
         int Update(Scheduling aluno);

@@ -17,16 +17,22 @@ namespace corta_e_tchau_backend.Service
             _notificationContext = notificationContext;
         }
 
-        public List<Scheduling> Get()
+        public List<SchedulingGetDTO> Get()
         {
             try
             {
                 List<Scheduling> schedulings = _repository.FullList();
-                List<Scheduling> schedulingsDTO = new List<Scheduling>();
+                List<SchedulingGetDTO> schedulingsDTO = new List<SchedulingGetDTO>();
                 foreach (var scheduling in schedulings)
                 {
                     scheduling.user.password = scheduling.user.password = "";
-                    schedulingsDTO.Add(scheduling);
+                    String data = scheduling.date_time.ToString("dd/MM/yyyy");
+                    String hora = scheduling.date_time.ToString("HH:mm");
+                    if (scheduling.user != null) 
+                    {
+                       scheduling.user.schedulings = null;
+                    }    
+                    schedulingsDTO.Add(new SchedulingGetDTO(data, hora, scheduling.description, scheduling.status, scheduling.user));
                 }
                 return schedulingsDTO;
             }

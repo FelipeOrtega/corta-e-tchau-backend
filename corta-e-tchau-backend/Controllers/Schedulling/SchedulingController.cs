@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using corta_e_tchau_backend.Domain.Notification;
 using corta_e_tchau_backend.Model;
 using corta_e_tchau_backend.Service;
@@ -19,13 +20,15 @@ namespace corta_e_tchau_backend.Controllers
             _service = service;
         }
 
-        [HttpGet]
-        public JsonReturn Get()
+        [HttpGet("filter")]
+        [Authorize]
+        public JsonReturn Get(DateTime data)
         {
-            return ReturnJson(_service.Get());
+            return ReturnJson(_service.Get(data));
         }
 
         [HttpGet("{id}")]
+        [Authorize]
         public JsonReturn Get(int id)
         {
             return ReturnJson(_service.Get(id));

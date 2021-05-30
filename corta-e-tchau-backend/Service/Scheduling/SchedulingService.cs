@@ -17,11 +17,11 @@ namespace corta_e_tchau_backend.Service
             _notificationContext = notificationContext;
         }
 
-        public List<SchedulingGetDTO> Get()
+        public List<SchedulingGetDTO> Get(DateTime dataFilter)
         {
             try
             {
-                List<Scheduling> schedulings = _repository.FullList();
+                List<Scheduling> schedulings = _repository.FullList(dataFilter);
                 List<SchedulingGetDTO> schedulingsDTO = new List<SchedulingGetDTO>();
                 foreach (var scheduling in schedulings)
                 {

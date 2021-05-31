@@ -63,8 +63,15 @@ namespace corta_e_tchau_backend.Service
         {
             try
             {
-                int codigoSchedulingInserido = _repository.Insert(scheduling);
-                return codigoSchedulingInserido;
+                if (_repository.isShedulingEmpty(scheduling))
+                {
+                    int codigoSchedulingInserido = _repository.Insert(scheduling);
+                    return codigoSchedulingInserido;
+                }
+                else
+                {
+                    _notificationContext.AddNotification("Horário indisponível.");
+                }
             }
             catch (Exception)
             {

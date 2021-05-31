@@ -19,5 +19,11 @@ namespace corta_e_tchau_backend.Repository
                                                                    .Where(s => s.date_time.Date == data.Date).ToList();
             return scheduling;
         }
+
+        public bool isShedulingEmpty(Scheduling scheduling)
+        {
+            Scheduling schedulingEmpty = context.Set<Scheduling>().Where(s => s.date_time.Hour == scheduling.date_time.Hour).FirstOrDefault();
+            return schedulingEmpty==null;
+        }
     }
 }

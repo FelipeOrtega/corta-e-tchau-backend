@@ -5,7 +5,7 @@ A aplicação possui a funcionalidade de realização de agendamento de cortes.
 
 Tecnologias utilizadas:
 
-- .NET Core
+- C# (.NET Core)
 - Entity Framework
 - PostgreSQL
 - Docker
